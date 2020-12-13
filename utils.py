@@ -24,7 +24,7 @@ def shred(path):
 def encrypt(password):
     bufferSize = 64 * 1024
     # encrypt
-    pyAesCrypt.encryptFile(os.path.join('/home/zaky/PycharmProjects/Dead_Man/', 'compressed.zip'), "compressed.aes", password, bufferSize)
+    pyAesCrypt.encryptFile(os.path.join('/home/zaky/PycharmProjects/PyDeadMan/', 'compressed.zip'), "compressed.aes", password, bufferSize)
     print('File encrypted')
 
     subprocess.run(['shred', '-uz', 'compressed.zip'])
