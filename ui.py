@@ -198,7 +198,7 @@ class Ui_MainWindow(object):
         self.label_5 = QtWidgets.QLabel(self.layoutWidget_3)
         self.label_5.setObjectName("label_5")
         self.horizontalLayout_5.addWidget(self.label_5)
-        self.lineEdit_pass_decrypt = QtWidgets.QLineEdit(self.layoutWidget_3)
+        self.lineEdit_pass_decrypt = PasswordEdit()
         self.lineEdit_pass_decrypt.setObjectName("lineEdit_pass_decrypt")
         self.horizontalLayout_5.addWidget(self.lineEdit_pass_decrypt)
         self.widget = QtWidgets.QWidget(self.frame_decrypt)
@@ -590,7 +590,7 @@ class Ui_MainWindow(object):
     #     self.pushButton_browse_folder.clicked.connect(self.get_folder)
     #     self.pushButton_browse_file.clicked.connect(self.get_file)
     #
-    #     self.pushButton_encrypt.clicked.connect(self.start_encrypting)
+    #     self.pushButton_encrypt.clicked.connect(self.encrypt)
     #     self.pushButton_hide.clicked.connect(self.hide)
     # # My code:
     # def get_folder(self):
@@ -604,7 +604,7 @@ class Ui_MainWindow(object):
     #         self.lineEdit_file.setText('{}'.format(self.file[0]))
     #
     #
-    # def start_encrypting(self):
+    # def encrypt(self):
     #     """Check if there are directory and password selected, then clear the password field,
     #     then compress,shred and encrypt the compressed file"""
     #     if (self.lineEdit_folder) and (self.lineEdit_pass_encrypt.text()):

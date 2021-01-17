@@ -1,8 +1,8 @@
 from PyQt5 import QtTest
 from PyQt5.QtWidgets import *
+from qtwidgets import PasswordEdit
 from PyQt5.QtGui import *
 from PyQt5.QtCore import Qt
-from qtwidgets import PasswordEdit
 from utils import compress, shred, encrypt, decrypt
 
 
@@ -21,8 +21,12 @@ class PyDeadMan(QMainWindow, Ui_MainWindow):
         self.pushButton_browse_folder.clicked.connect(self.get_folder)
         self.pushButton_browse_file.clicked.connect(self.get_file)
 
-        self.pushButton_encrypt.clicked.connect(self.start_encrypting)
+        self.pushButton_encrypt.clicked.connect(self.encrypt)
+        self.pushButton_decrypt.clicked.connect(self.decrypt)
+
         self.pushButton_hide.clicked.connect(self.hide)
+
+
 
 
     def get_folder(self):
@@ -36,13 +40,15 @@ class PyDeadMan(QMainWindow, Ui_MainWindow):
             self.lineEdit_file.setText('{}'.format(self.file[0]))
 
 
-    def start_encrypting(self):
-        """Check if there are directory and password selected, then clear the password field,
+    def encrypt(self):
+        """Check if there are folder and password selected, clear the password field,
         then compress,shred and encrypt the compressed file"""
         if (self.lineEdit_folder) and (self.lineEdit_pass_encrypt.text()):
             self.captured_encrypt_pass = self.lineEdit_pass_encrypt.text()
             self.lineEdit_pass_encrypt.clear()
-            QtTest.QTest.qWait(5 * 1000)
+
+            delay = int(float(self.delay.text()))
+            QtTest.QTest.qWait(delay * 1000) # Wait until the delay is over before start encrypting
             compress(self.directory)
             shred(self.directory)
             encrypt(self.captured_encrypt_pass)
@@ -55,6 +61,22 @@ class PyDeadMan(QMainWindow, Ui_MainWindow):
             alert.setText('Choose a directory and password first')
             alert.exec_()
 
+    def decrypt(self):
+        if self.file and self.lineEdit_pass_decrypt.text():
+            self.captured_decrypt_pass = self.lineEdit_pass_decrypt.text()
+            self.lineEdit_pass_decrypt.clear()
+            try:
+                decrypt(self.captured_decrypt_pass)
+            except ValueError:
+                print('--> Wrong password')
+
+            alert = QMessageBox()
+            alert.setText('Decrypted :)')
+            alert.exec_()
+        else:
+            alert = QMessageBox()
+            alert.setText('Choose an AES file and password first please')
+            alert.exec_()
 
 
 
