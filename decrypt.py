@@ -11,3 +11,12 @@ try:
     pyAesCrypt.decryptFile("compressed.aes", "compressed.zip", password, bufferSize)
 except ValueError:
     print('--> Wrong password')
+
+
+
+
+
+    #     # My Code
+    #     self.pushButton_browse_folder.clicked.connect(self.get_folder)
+    #     self.pushButton_browse_file.clicked.connect(self.get_file)
+    #

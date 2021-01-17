@@ -1,4 +1,5 @@
 .idea
-compressed.aes
+*.aes
+*.zip
 __pycache__
 

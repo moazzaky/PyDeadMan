@@ -21,13 +21,17 @@ def shred(path):
     shutil.rmtree(path)
 
 # encryption/decryption buffer size - 64K
+bufferSize = 64 * 1024
 def encrypt(password):
-    bufferSize = 64 * 1024
     # encrypt
     pyAesCrypt.encryptFile(os.path.join('/home/zaky/PycharmProjects/PyDeadMan/', 'compressed.zip'), "compressed.aes", password, bufferSize)
     print('File encrypted')
 
     subprocess.run(['shred', '-uz', 'compressed.zip'])
+
+def decrypt(password):
+        pyAesCrypt.decryptFile("compressed.aes", "compressed.zip", password, bufferSize)
+
 
 if __name__ == "__main__":
     pass
