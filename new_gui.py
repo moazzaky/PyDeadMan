@@ -1,8 +1,8 @@
 from PyQt5 import QtTest
 from PyQt5.QtWidgets import *
-from qtwidgets import PasswordEdit
-from PyQt5.QtGui import *
-from PyQt5.QtCore import Qt
+# from qtwidgets import PasswordEdit
+# from PyQt5.QtGui import *
+# from PyQt5.QtCore import Qt
 from utils import compress, shred, encrypt, decrypt
 
 
@@ -62,7 +62,7 @@ class PyDeadMan(QMainWindow, Ui_MainWindow):
             alert.exec_()
 
     def decrypt(self):
-        if self.file and self.lineEdit_pass_decrypt.text():
+        if self.lineEdit_file and self.lineEdit_pass_decrypt.text():
             self.captured_decrypt_pass = self.lineEdit_pass_decrypt.text()
             self.lineEdit_pass_decrypt.clear()
             try:

@@ -9,6 +9,7 @@ from getpass import getpass
 
 # compress to compressed.zip file
 def compress(path):
+    print('compress dir',  os.getcwd())
     shutil.make_archive('compressed','zip', path)
     print('compressing is done.')
 
@@ -24,7 +25,10 @@ def shred(path):
 bufferSize = 64 * 1024
 def encrypt(password):
     # encrypt
-    pyAesCrypt.encryptFile(os.path.join('/home/zaky/PycharmProjects/PyDeadMan/', 'compressed.zip'), "compressed.aes", password, bufferSize)
+
+    pyAesCrypt.encryptFile(os.path.join(os.getcwd(), 'compressed.zip'),  "compressed.aes", password, bufferSize)
+    print(os.path.isfile(os.path.join(os.getcwd(), "compressed.aes")))
+    print(os.path.join(os.getcwd(), "compressed.aes"))
     print('File encrypted')
 
     subprocess.run(['shred', '-uz', 'compressed.zip'])
